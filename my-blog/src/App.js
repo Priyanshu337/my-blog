@@ -1,23 +1,25 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './Navbar';
 import AboutPage from './Pages/AboutPage';
 import ArticleListPage from './Pages/ArticleListPage';
 import HomePage from './Pages/HomePage';
 import ArticlePage from './Pages/ArticlePage';
+import NotFoundPage from './Pages/NotFoundPage';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>This is my blog Page</h1>
+        <Navbar />
         <Routes>
-          <Route path="/" element={HomePage} />
-          <Route path="/about" element={AboutPage} />
-          <Route path="/articles" element={ArticleListPage} />
-          <Route path="/articles/:articleID" element={ArticlePage} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/articles" element={<ArticleListPage />} />
+          <Route path="/articles/:articleId" element={<ArticlePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
-
     </BrowserRouter>
   );
 }

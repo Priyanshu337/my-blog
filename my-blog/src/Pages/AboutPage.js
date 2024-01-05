@@ -1,6 +1,13 @@
 const AboutPage = () => {
     return (
-        <h1>THis is about page </h1>
+        <>
+            <h1>This page is about me </h1>
+            <h2>
+                My name is Priyanshu Choudhary.
+            </h2>
+
+
+        </>
     );
 }
 

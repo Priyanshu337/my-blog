@@ -1,0 +1,13 @@
+.article-list-item {
+    margin-bottom: 20px;
+}
+
+.Article-container {
+    justify-content: left;
+}
+
+.Article-container h1 {
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}

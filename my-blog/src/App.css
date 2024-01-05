@@ -32,7 +32,23 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.list-of-navbar {
+  list-style: none;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.list-of-navbar li {
+  margin-right: 10px;
+  font-weight: bold;
+
 }
