@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const ArticleModel = require('./model/articles')
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+
 
 const app = express();
 app.use(express.json());
@@ -24,8 +24,34 @@ let articleInfo = [
     }
 ]
 
+// to save data in mongoose 
+app.post('/api/articles/add', async (req, res) => {
+    try {
+        const { name, title, content } = req.body;
 
-app.get('/api/articles', async (req, res) => {
+        // Create a new article instance
+        const newArticle = new Article({
+            name: name,
+            title: title,
+            content: content
+        });
+
+        // Save the article to the database
+        await newArticle.save();
+
+        res.status(201).json({ message: 'Article created successfully' });
+    } catch (error) {
+        console.error('Error creating article:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+
+
+
+
+app.get('/api/articles/{articleId}', async (req, res) => {
     try {
         // use react blog db
         const name = req.query.name;

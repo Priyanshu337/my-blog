@@ -6,7 +6,7 @@ const articleSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         default: mongoose.Types.ObjectId
     },
-    content: {
+    name: {
         type: String,
         required: true
     },
@@ -14,10 +14,25 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
+    content: {
         type: String,
         required: true
-    }
+    }, upvotes: {
+        type: Number,
+        default: 0
+    },
+    comments: [
+        {
+            postedBy: {
+                type: String,
+                required: true
+            },
+            text: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 });
 
 // Create the Article model
