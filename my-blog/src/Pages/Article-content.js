@@ -10,16 +10,16 @@ const articles = [
         name: 'learn-node',
         title: 'The Fastest Way to Learn Node',
         content: [
-            'THe fastest way to learn node is to learn it from the documentation. Node.js is designed to be asynchronous and event-driven. It uses an event loop to handle I/O operations asynchronously, allowing it to efficiently manage many connections simultaneously without blocking the execution of code. Although Node.js is single-threaded, it can handle many concurrent connections due to its non-blocking nature. It utilizes an event loop to manage tasks asynchronously, making it suitable for handling a large number of concurrent requests.   NPM is the package manager for Node.js. It is a vast repository of open-source libraries and tools that developers can use in their Node.js projects. NPM simplifies the process of managing project dependencies and sharing code with others.            '
+            'The fastest way to learn node is to learn it from the documentation. Node.js is designed to be asynchronous and event-driven. It uses an event loop to handle I/O operations asynchronously, allowing it to efficiently manage many connections simultaneously without blocking the execution of code. Although Node.js is single-threaded, it can handle many concurrent connections due to its non-blocking nature. It utilizes an event loop to manage tasks asynchronously, making it suitable for handling a large number of concurrent requests.   NPM is the package manager for Node.js. It is a vast repository of open-source libraries and tools that developers can use in their Node.js projects. NPM simplifies the process of managing project dependencies and sharing code with others.'
         ]
     },
     {
         name: 'learn-mongoDb',
         title: 'The Fastest Way to Learn MongoDb',
         content: [
-            'The fastest way to learn mongodb is to learn it from the documentation. The query language used in MongoDB is similar to JSON and provides a straightforward way to interact with the database. This language allows developers to express queries and updates using a syntax that closely resembles the structure of the documents.  MongoDB supports a powerful query language that allows developers to perform complex queries, including filtering, sorting, and aggregations. It also supports geospatial queries, making it suitable for location-based applications.       MongoDB uses an internal memory-mapped storage engine, making it optimized for read and write operations. It also supports indexing and allows for efficient queries on large datasets.     MongoDB supports the creation of indexes on fields within a collection. Indexing improves the performance of read queries by allowing the database to quickly locate and retrieve specific documents.            '
+            'The fastest way to learn mongodb is to learn it from the documentation. The query language used in MongoDB is similar to JSON and provides a straightforward way to interact with the database. This language allows developers to express queries and updates using a syntax that closely resembles the structure of the documents.  MongoDB supports a powerful query language that allows developers to perform complex queries, including filtering, sorting, and aggregations. It also supports geospatial queries, making it suitable for location-based applications.       MongoDB uses an internal memory-mapped storage engine, making it optimized for read and write operations. It also supports indexing and allows for efficient queries on large datasets.     MongoDB supports the creation of indexes on fields within a collection. Indexing improves the performance of read queries by allowing the database to quickly locate and retrieve specific documents.'
         ]
-    },
+    }
 ];
 
 export default articles;

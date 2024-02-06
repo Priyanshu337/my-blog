@@ -4,27 +4,42 @@ import NotFoundPage from './NotFoundPage';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
+
+
 function ArticlePages() {
-    const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: [] });
+
+    const [articleInfo, setArticleInfo] = useState([]);
+
     const { articleId } = useParams();
+    console.log("articleId", articleId);
+
+    // Used this to get data from backend to frontend this code calls request to backend and get data  from db refer to index,js file of BE line 63...
 
     const loadArticleInfo = useCallback(async () => {
         try {
-            const response = await axios.get(`/api/articles/${articleId}`);
+            const response = await axios.get(`http://localhost:8080/api/articles/${articleId}`);
             const newArticleInfo = response.data;
-            setArticleInfo(newArticleInfo);
+            console.log(newArticleInfo);
+            const { name, title, content } = newArticleInfo;
+
+            setArticleInfo({
+                name: name,
+                title: title,
+                content: content,
+            });
+
         } catch (error) {
             console.error('Error loading article info:', error.message);
             console.error('Error details:', error);
         }
-    }, [articleId]);
+    }, [articleId, setArticleInfo]);
 
 
     useEffect(() => {
         loadArticleInfo();
     }, [loadArticleInfo]);
 
-    async function addUpVote() {
+    async function addUpvote() {
         try {
             await axios.put(`/api/articles/upvote`, { params: { name: articleId } });
             // If you need to update the upvote count, you may fetch the updated data again.
@@ -33,33 +48,23 @@ function ArticlePages() {
             console.error('Error in upvote', error.message);
         }
     }
-
     if (!articleInfo) {
         return <NotFoundPage />;
     }
 
     return (
         <>
-            <h1>{articleInfo.title}</h1>
-            <div className='button-comment-container'>
-                <button onClick={addUpVote}>Upvote</button>
-                <p>this article has {articleInfo.upvotes} upvotes(s)</p>
+            <div>
+                <h1>{articleInfo.title}</h1>
+                <p>{articleInfo.name}</p>
+                <p>{articleInfo.content}</p>
             </div>
-            {articleInfo.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-            ))}
-            {/* <CommentsList comments={articleInfo.comments} /> */}
+
         </>
     );
 }
 
 export default ArticlePages;
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,17 @@
+.article-list {
+    border: 2px solid black;
+    width: 70%;
+    height: 100vh;
+    padding: 50px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.content {
+    margin: 2px;
+    width: 600px;
+    border-radius: 20px;
+
+}

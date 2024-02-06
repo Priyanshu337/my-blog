@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 // Define the article schema
 const articleSchema = new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        default: mongoose.Types.ObjectId
-    },
     name: {
         type: String,
         required: true
@@ -15,28 +11,32 @@ const articleSchema = new mongoose.Schema({
         required: true
     },
     content: {
-        type: String,
+        type: [String],
         required: true
-    }, upvotes: {
-        type: Number,
-        default: 0
-    },
-    comments: [
-        {
-            postedBy: {
-                type: String,
-                required: true
-            },
-            text: {
-                type: String,
-                required: true
-            }
-        }
-    ]
+    }
+
 });
 
 // Create the Article model
-const ArticleModel = mongoose.model('article', articleSchema);
+const ArticleModel = mongoose.model('articlesData', articleSchema);
 
 // Export the model
 module.exports = ArticleModel;
+
+
+
+
+// upvotes: {
+//     type: Number,    
+//     required: true
+// },
+// comments: [
+//     {
+//         postedBy: {
+//             type: String
+//         },
+//         text: {
+//             type: String
+//         }
+//     }
+// ]
