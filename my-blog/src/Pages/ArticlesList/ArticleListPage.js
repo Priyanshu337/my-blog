@@ -9,7 +9,6 @@ import "./ArticleListPage.css";
 
 const ArticleListPage = () => {
     const [articleList, setArticleList] = useState([]);
-
     useEffect(() => {
         LoadArticle();
     }, [])
@@ -26,7 +25,3 @@ const ArticleListPage = () => {
     );
 }
 export default ArticleListPage;
-
-// display: flex;
-//     flex-direction: column;
-//     align-items: center;

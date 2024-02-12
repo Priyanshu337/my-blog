@@ -1,0 +1,52 @@
+.nav-container {
+    border: 2px solid black;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 10vh;
+    align-items: center;
+    text-decoration: wavy;
+    background-color: whitesmoke;
+}
+
+.links-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 50%;
+
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+    font-size: 18px;
+    width: 15%;
+    margin: 30px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+/* 
+.addArticle {
+    text-decoration: none;
+    color: inherit;
+    font-size: 18px;
+    width: 10%;
+    margin: 30px;
+    background-color: white;
+    border: 1px solid black;
+    text-decoration: none;
+} */
+
+.addArticle-container {
+    border: 1px solid black;
+    text-decoration: none;
+    font-size: 18px;
+    width: 8%;
+    border-radius: 10px;
+    background-color: white;
+
+}

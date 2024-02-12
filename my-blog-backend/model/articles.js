@@ -13,30 +13,20 @@ const articleSchema = new mongoose.Schema({
     content: {
         type: [String],
         required: true
+    },
+    comments: {
+        type: String,
+        required: true
+    },
+    upvotes: {
+        type: Number,
+        required: true
     }
-
 });
 
 // Create the Article model
-const ArticleModel = mongoose.model('articlesData', articleSchema);
+const ArticleModel = mongoose.model('articlesDatas', articleSchema);
 
 // Export the model
 module.exports = ArticleModel;
 
-
-
-
-// upvotes: {
-//     type: Number,    
-//     required: true
-// },
-// comments: [
-//     {
-//         postedBy: {
-//             type: String
-//         },
-//         text: {
-//             type: String
-//         }
-//     }
-// ]
