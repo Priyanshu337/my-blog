@@ -37,7 +37,7 @@ export default function AddArticle(props) {
                     <label className="label">Comment:</label>
                     <input type="text" name="comments" value={comments} onChange={(e) => setComments(e.target.value)} />
                     <label className="label">Upvotes:</label>
-                    <button value={upvotes} onClick={(() => {
+                    <button className="upvote-btn" value={upvotes} onClick={(() => {
                         if (!clicked) {
                             setUpvotes(upvotes + 1)
                             console.log("Clicked");

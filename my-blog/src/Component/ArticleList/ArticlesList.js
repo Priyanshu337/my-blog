@@ -6,7 +6,6 @@ const ArticleList = ({ list }) => {
 
     return (
         <>
-            <div><h1>Hello</h1></div>
             < div className='article-list' >
                 {
                     list?.map(article => (

@@ -1,14 +1,14 @@
 .article-list {
     border: 2px solid black;
     width: 70%;
-    height: 100vh;
+    height: auto;
     padding: 50px 0px 0px 0px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-left: 50px;
-
+    box-shadow: 10px 10px 5px 30px lightblue;
+    border-radius: 10px;
 
 }
 

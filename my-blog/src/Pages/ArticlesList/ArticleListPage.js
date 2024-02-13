@@ -5,8 +5,6 @@ import axios from 'axios';
 import ArticleList from '../../Component/ArticleList/ArticlesList';
 import "./ArticleListPage.css";
 
-
-
 const ArticleListPage = () => {
     const [articleList, setArticleList] = useState([]);
     useEffect(() => {

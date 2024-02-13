@@ -69,7 +69,7 @@ app.get('/api/articles', async (req, res) => {
 
 
 
-app.put('/api/articles/:name/upvotes', async (req, res) => {
+app.put('/api/articles/:articleId/upvotes', async (req, res) => {
     const { name } = req.query.params;
     await ArticleModel.updateOne({ name: name }, {
         $inc: { upvotes: 1 }
@@ -83,13 +83,14 @@ app.put('/api/articles/:name/upvotes', async (req, res) => {
     }
 })
 
-app.post('/api/articles/:name/comments', async (req, res) => {
-    const { name } = req.params;
-    const { postedBy, text } = req.body;
-    await ArticleModel.updateOne({ name: name }, {
-        $push: { comments: { postedBy, text } }
+app.post('/api/articles/${articleId}/comments', async (req, res) => {
+    const { articleId } = req.params;
+    const { commentData } = req.body;
+    console.log("THis is backend comment data: " + commentData);
+    await ArticleModel.updateOne({ articleId: articleId }, {
+        $push: { comments: { commentData } }
     })
-    const article = await ArticleModel.findOne({ name: name });
+    const article = await ArticleModel.findOne({ articleID: articleId });
     if (article) {
         res.json(article);
     } else {

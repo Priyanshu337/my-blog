@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios';
 import { useState } from "react";
 import AddArticle from './AddArticle';
-import ArticleListPage from '../../Component/ArticleList/ArticlesList';
+import ArticleListPage from '../ArticlesList/ArticleListPage';
+import './index.css'
 
 export default function Index() {
     const client = axios.create({
@@ -23,10 +24,17 @@ export default function Index() {
     };
 
     return (
-        <div>
-            < AddArticle addArticle={addArticle} />
-            < ArticleListPage />
-        </div>
+        <>
+            <div className="index-container">
+                <div className='add-article'>
+                    < AddArticle addArticle={addArticle} />
+                </div>
+                <div className="article-container">
+                    <ArticleListPage />
+                </div >
+            </div>
+        </>
+
     )
 }
 
