@@ -1,8 +1,20 @@
+const fs = require('fs');
+const admin = require('firebase-admin');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const ArticleModel = require('./model/Articles');
 const cors = require('cors');
+
+
+const ArticleModel = require('./model/Articles');
+
+const credentials = JSON.parse(
+    fs.readFileSync('./credentials.json')
+);
+
+admin.initializeApp({
+    credentials: admin.credential.cert(credentials),
+})
 
 const app = express();
 app.use(cors());
@@ -41,7 +53,7 @@ app.post('/api/articles/add', async (req, res) => {
 app.get('/api/articles/:articleid', async (req, res) => {
     try {
         const articleIdParam = req.params.articleid;
-        const article = await ArticleModel.findOne({ name: articleIdParam });
+        const article = await ArticleModel.findOne({ _id: articleIdParam });
         if (article) {
             res.json(article);
         } else {
@@ -83,18 +95,24 @@ app.put('/api/articles/:articleId/upvotes', async (req, res) => {
     }
 })
 
-app.post('/api/articles/${articleId}/comments', async (req, res) => {
-    const { articleId } = req.params;
-    const { commentData } = req.body;
-    console.log("THis is backend comment data: " + commentData);
-    await ArticleModel.updateOne({ articleId: articleId }, {
-        $push: { comments: { commentData } }
-    })
-    const article = await ArticleModel.findOne({ articleID: articleId });
-    if (article) {
-        res.json(article);
-    } else {
-        res.json('invalid article');
+app.post('/api/articles/:articleId/comments', async (req, res) => {
+    try {
+        const { articleId } = req.params;
+        const commentData = req.body;
+
+        console.log("This is backend comment data: ", commentData);
+        const response = await ArticleModel.updateOne({ _id: articleId }, {
+            $push: { comments: commentData.commentData.comment }
+        })
+        console.log("response", response);
+        const article = await ArticleModel.findOne({ _id: articleId });
+        if (article) {
+            res.json(article);
+        } else {
+            res.json('invalid article');
+        }
+    } catch (err) {
+        console.log(err);
     }
 })
 
@@ -114,4 +132,7 @@ app.post('/api/articles/${articleId}/comments', async (req, res) => {
 //         console.error('Error saving User:', error.message);
 //         res.status(500).json({ error: 'Internal Server Error' });
 //     }
-// });  
+// });  '
+
+
+
