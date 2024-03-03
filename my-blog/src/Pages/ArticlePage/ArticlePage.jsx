@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-// import useUser from '../../hooks/useUser';
+import useUser from '../../hooks/useUser';
 import AddComment from '../../Component/Comment/AddComment';
 import "./ArticlePage.css"
 
@@ -17,7 +17,7 @@ function ArticlePages() {
         "upvotes": 0,
     });
     const { articleId } = useParams();
-    // const { user, isLoading } = useUser();
+    const { user, isLoading } = useUser();
 
     const loadArticleInfo = useCallback(async () => {
         try {
@@ -66,7 +66,10 @@ function ArticlePages() {
         <>
             <div className='first-container'>
                 <div className='article'>
-                    <button onClick={addUpvotes} className="upvote-btn"> UpVote</button>
+                    {user ?
+                        <button onClick={addUpvotes} className="upvote-btn"> UpVote</button> :
+                        <button>Login to Upvote</button>
+                    }
                     <Scrollbars style={{ width: "100%", height: "100%" }}>
                         <p>{articleInfo.name}</p>
                         <h1>{articleInfo.title}</h1>
@@ -77,7 +80,10 @@ function ArticlePages() {
                 <div className='comments-upVotes'>
                     <div className='add-comment'>
                         <h1>
-                            <AddComment sendData={handleDataFromChild} />
+                            {user ?
+                                <AddComment sendData={handleDataFromChild} /> :
+                                <button >Login to comment</button>
+                            }
                         </h1>
                     </div>
                 </div>

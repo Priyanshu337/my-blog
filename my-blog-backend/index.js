@@ -1,3 +1,4 @@
+// these are all external imports
 const fs = require('fs');
 const admin = require('firebase-admin');
 const express = require('express');
@@ -5,13 +6,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-
+// These are all internal imports
 const ArticleModel = require('./model/Articles');
-
 const credentials = JSON.parse(
     fs.readFileSync('./credentials.json')
 );
-
 admin.initializeApp({
     credentials: admin.credential.cert(credentials),
 })
@@ -21,7 +20,6 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 const port = 8080;
 
 mongoose.connect('mongodb+srv://priyanshu:priyanshu@cluster0.wrio9jz.mongodb.net/My-blog')
@@ -29,6 +27,20 @@ mongoose.connect('mongodb+srv://priyanshu:priyanshu@cluster0.wrio9jz.mongodb.net
 
 app.listen(port, () => {
     console.log('Server is Listeneing on Port', port);
+});
+
+app.use(async (req, res, next) => {
+    const { authToken } = req.headers;
+    if (authToken) {
+        try {
+            req.user = await admin.auth().verifyIdToken(authToken)
+
+        } catch (e) {
+            res.sendStatus(400);
+            console.log(e);
+        }
+    }
+    next();
 });
 
 app.get('/api/articles', async (req, res) => {
@@ -68,8 +80,12 @@ app.post('/api/articles/add', async (req, res) => {
 app.get('/api/articles/:articleid', async (req, res) => {
     try {
         const articleIdParam = req.params.articleid;
+        const { uid } = req.user;
+
         const article = await ArticleModel.findOne({ _id: articleIdParam });
         if (article) {
+            const upvoteIds = article.upvoteIds || [];
+            article.canUpvote = uid && !upvoteIds.include(uid);
             res.json(article);
         } else {
             res.json("No article found")
