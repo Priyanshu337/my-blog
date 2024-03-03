@@ -1,12 +1,25 @@
+import './AboutPage.css'
+
+import image from '../../Assets/image.jpg'
+
 const AboutPage = () => {
     return (
         <>
-            <h1>This page is about me </h1>
-            <h2>
-                My name is Priyanshu Choudhary.
-            </h2>
 
+            <div className='Main'>
+                <div>
+                    <div className='Logo'>
+                        <img src={image} ></img>
+                    </div>
+                </div>
+                <div className='secound-main'>
+                    <div className='description'>
+                        <h1>About this Page </h1>
+                        <p> </p>
+                    </div>
 
+                </div>
+            </div>
         </>
     );
 }

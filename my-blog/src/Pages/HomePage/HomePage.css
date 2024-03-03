@@ -1,0 +1,15 @@
+.body-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.intro-container {
+    border: 2px solid black;
+    width: 40%;
+}
+
+.second {
+    border: 2px solid black;
+    width: 40%;
+}

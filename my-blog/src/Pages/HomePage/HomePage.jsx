@@ -1,10 +1,27 @@
+import "./HomePage.css"
+
 const HomePage = () => {
     return (
         <>
-            <h1>Hello, Welcome to my blog</h1>
-            <p>
-                This is my blog page whihc i am creating using MERN Stack
-            </p>
+            <div className="main-container">
+                <h1 style={{ border: '2px solid black' }}>Home</h1>
+
+                <div className="body-container">
+                    <div className="intro-container">
+                        <label>Why i built this</label>
+                        <p>While Working on my skills and </p>
+
+
+
+
+
+
+                    </div>
+                    <div className="second">
+                        <h1>Hello</h1>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

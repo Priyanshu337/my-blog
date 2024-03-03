@@ -4,9 +4,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import "./ArticlePage.css"
 import AddComment from '../../Component/Comment/AddComment';
+// import useUser from '../../hooks/useUser';
 
 function ArticlePages() {
-
     const [articleInfo, setArticleInfo] = useState({
         "title": "",
         "name": "",
@@ -14,16 +14,14 @@ function ArticlePages() {
         "comments": [],
         "upvotes": 0,
     });
-    console.log("Upvotes", articleInfo.upvotes);
-
     const { articleId } = useParams();
+    // const { user, isLoading } = useUser();
+
     const loadArticleInfo = useCallback(async () => {
         try {
             const response = await axios.get(`http://localhost:8080/api/articles/${articleId}`);
             const newArticleInfo = response.data;
-            // const { name, title, content, comments, upvotes } = newArticleInfo;
             setArticleInfo(newArticleInfo);
-
         } catch (error) {
             console.error('Error loading article info:', error.message);
             console.error('Error details:', error);
@@ -33,36 +31,39 @@ function ArticlePages() {
         loadArticleInfo();
     }, [loadArticleInfo]);
 
-    // const [commentData, setCommentData] = useState('');
-
     const handleDataFromChild = async (sendData) => {
         try {
             const response = await axios.post(`http://localhost:8080/api/articles/${articleId}/comments`, {
                 articleId: articleId,
                 commentData: sendData,
             });
-
-            // setCommentData((prevCommentData) => [response.data, ...prevCommentData]);
             console.log("Comment Added", response.data);
-
             setArticleInfo(response.data);
-
         } catch (err) {
-            // res.json(err);
             console.log("error", err);
         }
     }
+
+    const addUpvotes = async () => {
+        try {
+            const response = await axios.post(`http://localhost:8080/api/articles/${articleId}/upvotes`);
+            setArticleInfo(response.data)
+        } catch (err) {
+            console.log("this is the error")
+            console.log(err);
+        }
+    };
 
     return (
         <>
             <div className='first-container'>
                 <div className='article'>
+                    <button onClick={addUpvotes}> UpVote</button>
                     <p>{articleInfo.name}</p>
                     <h1>{articleInfo.title}</h1>
-                    <p>{articleInfo.content}</p><br />
-                    <label>This article has {articleInfo.upvotes} upvotes</label>
+                    <p>{articleInfo.content}</p>
+                    <label style={{ fontWeight: 'bold' }}>This article has {articleInfo.upvotes} upvotes</label>
                 </div>
-
                 <div className='comments-upVotes'>
                     <div className='add-comment'>
                         <h1>
@@ -77,11 +78,10 @@ function ArticlePages() {
                         {
                             articleInfo.comments.map((data, index) => {
 
-                                return <li key={index} className="comments-list">{data}</li>
+                                return <p key={index} className="comments-list">{data}</p>
                             })
                         }
                     </div>
-
                 </div>
             </div>
 

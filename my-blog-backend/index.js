@@ -31,6 +31,21 @@ app.listen(port, () => {
     console.log('Server is Listeneing on Port', port);
 });
 
+app.get('/api/articles', async (req, res) => {
+    try {
+        const listArticle = await ArticleModel.find();
+        if (listArticle) {
+            res.status(200).json(listArticle);
+        } else {
+            res.json({ message: "No Article List found" });
+        }
+    } catch (err) {
+        console.log('error:', err);
+        res.status(500).json({ error: "something is wrong with recieving data from db" });
+    }
+})
+
+
 app.post('/api/articles/add', async (req, res) => {
     try {
         const { articleName, title, content, comments, upvotes } = req.body;
@@ -65,35 +80,35 @@ app.get('/api/articles/:articleid', async (req, res) => {
     }
 });
 
-app.get('/api/articles', async (req, res) => {
+
+app.post('/api/articles/:articleId/upvotes', async (req, res) => {
+    const { articleId } = req.params;
     try {
-        const listArticle = await ArticleModel.find();
-        if (listArticle) {
-            res.status(200).json(listArticle);
-        } else {
-            res.json({ message: "No Article List found" });
-        }
-    } catch (err) {
-        console.log('error:', err);
-        res.status(500).json({ error: "something is wrong with recieving data from db" });
+        await ArticleModel.findOneAndUpdate({ _id: articleId }, { $inc: { upvotes: 1 } }, { new: true });
+        res.status("Success");
+    } catch (error) {
+        console.error(error);
+        res.json({ error });
     }
-})
+});
 
 
+// app.put('/api/articles/:articleId/upvotes', async (req, res) => {
+//     const { articleId } = req.params;
+//     console.log(articleId);
 
-app.put('/api/articles/:articleId/upvotes', async (req, res) => {
-    const { name } = req.query.params;
-    await ArticleModel.updateOne({ name: name }, {
-        $inc: { upvotes: 1 }
-    });
-    const article = await ArticleModel.findOne({ name });
-    if (article) {
-        res.json(article)
-    }
-    else {
-        res.json(`There is no article ${name}`);
-    }
-})
+//     const upvote = await ArticleModel.findOne({ _id: articleId });
+//     if (upvote) {
+//         await ArticleModel.updateOne({ _id: articleId }, {
+//             $inc: { upvotes: 1 }
+//         });
+//         res.json(article)
+//     }
+//     // const article = await ArticleModel.findOne({ _id: articleId });
+//     else {
+//         res.json(`There is no article ${articleId}`);
+//     }
+// })
 
 app.post('/api/articles/:articleId/comments', async (req, res) => {
     try {

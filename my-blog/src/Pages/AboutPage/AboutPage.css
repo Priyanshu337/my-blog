@@ -1,0 +1,43 @@
+.Main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: auto;
+    height: 100vh;
+    /* background-color: aliceblue; */
+}
+
+.secound-main {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid blue;
+    border-radius: 20px;
+    padding: 20px;
+    width: 60rem;
+    margin: 30px 30px 30px 30px;
+}
+
+.description {
+    border: 0.6px light black;
+    background-color: blueviolet;
+    border-radius: 20px;
+    width: 350px;
+    margin-left: 18rem;
+}
+
+.my-description {
+    background-color: aliceblue;
+    width: 90%;
+    height: 80vh;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px 10px 25px;
+}
+
+.my-description label {
+    width: 370px;
+    margin: 10px 10px 10px 25px;
+
+}
