@@ -5,11 +5,10 @@
 }
 
 .article {
-    height: 90vh;
+    height: auto;
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
     margin: 50px 30px 30px 30px;
     width: 50%;
     padding: 50px;
@@ -56,6 +55,10 @@
     margin: 20px 10px 10px 10px;
     background-color: aqua;
 
+}
+
+.upvote-btn {
+    margin-bottom: 20px;
 }
 
 .upVotes-container {

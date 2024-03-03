@@ -80,35 +80,37 @@ app.get('/api/articles/:articleid', async (req, res) => {
     }
 });
 
+app.get('/api/articles/search', async (req, res) => {
+    try {
+        const { name } = req.body; // Access the name property from the request body
+        console.log(name);
+        res.json({ response: name }); // Send the response as JSON
+    } catch (err) {
+        console.log("Err", err);
+        res.status(500).json({ error: 'Internal Server Error' }); // Send an error response
+    }
+});
+
+
 
 app.post('/api/articles/:articleId/upvotes', async (req, res) => {
+
     const { articleId } = req.params;
+    console.log(articleId);
     try {
-        await ArticleModel.findOneAndUpdate({ _id: articleId }, { $inc: { upvotes: 1 } }, { new: true });
-        res.status("Success");
+        const response = await ArticleModel.findOneAndUpdate({ _id: articleId }, { $inc: { upvotes: 1 } }, { new: true });
+        const updatedArticle = await ArticleModel.findById({ _id: articleId });
+        if (updatedArticle) {
+            res.json(updatedArticle);
+        } else {
+            res.json('invalid Article');
+        }
+
     } catch (error) {
         console.error(error);
         res.json({ error });
     }
 });
-
-
-// app.put('/api/articles/:articleId/upvotes', async (req, res) => {
-//     const { articleId } = req.params;
-//     console.log(articleId);
-
-//     const upvote = await ArticleModel.findOne({ _id: articleId });
-//     if (upvote) {
-//         await ArticleModel.updateOne({ _id: articleId }, {
-//             $inc: { upvotes: 1 }
-//         });
-//         res.json(article)
-//     }
-//     // const article = await ArticleModel.findOne({ _id: articleId });
-//     else {
-//         res.json(`There is no article ${articleId}`);
-//     }
-// })
 
 app.post('/api/articles/:articleId/comments', async (req, res) => {
     try {
@@ -130,24 +132,4 @@ app.post('/api/articles/:articleId/comments', async (req, res) => {
         console.log(err);
     }
 })
-
-
-
-// app.get('/signUp', async (req, res) => {
-//     try {
-//         const { username, password, verifyPassword } = req.body;
-//         const newUser = new ArticleModel({
-//             username: username,
-//             password: password,
-//             verifyPassword: verifyPassword
-//         });
-//         await newUser.save();
-//         res.status(201).json({ message: 'User created successfully' });
-//     } catch (error) {
-//         console.error('Error saving User:', error.message);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// });  '
-
-
 

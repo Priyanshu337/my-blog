@@ -6,10 +6,23 @@
 
 .intro-container {
     border: 2px solid black;
+    background-color: aliceblue;
     width: 40%;
 }
 
 .second {
     border: 2px solid black;
+    background-color: aliceblue;
     width: 40%;
+}
+
+.main-container {
+    color: black;
+    margin-top: -18px;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }

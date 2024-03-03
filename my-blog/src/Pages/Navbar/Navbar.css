@@ -1,6 +1,5 @@
 .nav-container {
     border: 2px solid black;
-    margin: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
