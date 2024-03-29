@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 
+import Upvote from '../../Component/Upvote/upvote';
 import useUser from '../../hooks/useUser';
 import AddComment from '../../Component/Comment/AddComment';
 import "./ArticlePage.css"
@@ -13,7 +14,7 @@ function ArticlePages() {
         "title": "",
         "name": "",
         "content": "",
-        "comments": [],
+        "comments": [""],
         "upvotes": 0,
     });
     const { articleId } = useParams();
@@ -49,30 +50,15 @@ function ArticlePages() {
             console.log("error", err);
         }
     }
-
-    const addUpvotes = async () => {
-        try {
-            const response = await axios.post(`http://localhost:8080/api/articles/${articleId}/upvotes`);
-            console.log(response.data);
-            // setArticleInfo(prevState => ({
-            //     ...prevState,
-            //     upvotes: response.data.updatedUpvotes // replace with the actual property in your response
-            // }));
-        } catch (err) {
-            console.log("this is the error")
-            console.log(err);
-        }
-    };
-
-
     return (
         <>
             <div className='first-container'>
                 <div className='article'>
-                    {user ?
-                        <button onClick={addUpvotes} className="upvote-btn"> UpVote</button> :
+                    {user ? (
+                        <Upvote articleId={articleId} />
+                    ) : (
                         <button>Login to Upvote</button>
-                    }
+                    )}
                     <Scrollbars style={{ width: "100%", height: "100%" }}>
                         <p>{articleInfo.name}</p>
                         <h1>{articleInfo.title}</h1>

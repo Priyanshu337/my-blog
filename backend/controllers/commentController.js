@@ -4,7 +4,7 @@ const addComment = async (req, res) => {
     try {
         const { articleId } = req.params;
         const { comment } = req.body;
-
+        console.log("This is comment data that i recieve on backend", comment);
         const response = await ArticleModel.findByIdAndUpdate(articleId, {
             $push: { comments: comment },
         });

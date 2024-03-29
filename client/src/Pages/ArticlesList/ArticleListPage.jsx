@@ -7,14 +7,15 @@ import "./ArticleListPage.css";
 
 const ArticleListPage = () => {
     const [articleList, setArticleList] = useState([]);
-    useEffect(() => {
-        LoadArticle();
-    }, [])
 
     const LoadArticle = async () => {
         const { data } = await axios.get('http://localhost:8080/api/articles');
         setArticleList(data);
     }
+    useEffect(() => {
+        LoadArticle();
+    }, [])
+
     return (
         <div className='Article-container'>
             <h1> Articles </h1>

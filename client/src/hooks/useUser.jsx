@@ -13,7 +13,9 @@ const useUser = () => {
         return unsubscribe;
     }, [])
 
-    return { user, isLoading };
+    const userEmail = user ? user.email : null;
+
+    return { user, userEmail, isLoading };
 
 }
 

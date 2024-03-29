@@ -4,8 +4,7 @@ import { useState } from 'react';
 function AddComment({ sendData }) {
     const [comment, setComment] = useState('');
     const btnClicked = () => {
-        const data = { comment };
-        sendData(data);
+        sendData(comment);
         setComment('');
     }
     return (

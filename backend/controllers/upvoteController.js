@@ -15,12 +15,13 @@ const upvoteArticle = async (req, res) => {
                     $inc: { upvotes: 1 },
                     $push: { upVoteIds: uid },
                 });
+                res.json(" Upvote Added")
             }
 
-            const updatedArticle = await ArticleModel.findById(articleId);
-            res.json(updatedArticle);
+            // const updatedArticle = await ArticleModel.findById(articleId);
+            // res.json(updatedArticle);
         } else {
-            res.json('Invalid Article');
+            res.json("User can only upvote Once on each article")
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
