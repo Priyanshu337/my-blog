@@ -4,12 +4,14 @@ const upvoteArticle = async (req, res) => {
     try {
         const { articleId } = req.params;
         const { uid } = req.user;
+        console.log("uis", uid);
 
         const article = await ArticleModel.findById(articleId);
+        // console.log(article);
         if (article) {
             const upvoteIds = article.upVoteIds || [];
             const canUpvote = uid && !upvoteIds.includes(uid);
-
+            console.log(canUpvote);
             if (canUpvote) {
                 await ArticleModel.findByIdAndUpdate(articleId, {
                     $inc: { upvotes: 1 },
@@ -18,8 +20,6 @@ const upvoteArticle = async (req, res) => {
                 res.json(" Upvote Added")
             }
 
-            // const updatedArticle = await ArticleModel.findById(articleId);
-            // res.json(updatedArticle);
         } else {
             res.json("User can only upvote Once on each article")
         }
