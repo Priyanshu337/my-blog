@@ -4,8 +4,6 @@ import axios from "axios";
 
 function SearchBar() {
     const [input, setInput] = useState('');
-    console.log("Entered name is ", input)
-
     const search = async () => {
         const response = await axios.get('https://localhost:8080/api/articles/search')
     }
@@ -24,5 +22,4 @@ function SearchBar() {
         </>
     )
 }
-
 export default SearchBar

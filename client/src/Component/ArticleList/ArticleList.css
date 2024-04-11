@@ -1,21 +1,25 @@
 .article-list {
-    border: 2px solid black;
-    width: 70%;
+    /* border: 2px solid black; */
+    width: auto;
     height: auto;
     padding: 50px 0px 0px 0px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    box-shadow: 10px 10px 5px 30px lightblue;
     border-radius: 10px;
-
 }
 
 .content {
-    margin: 2px;
-    width: 600px;
-    padding: 20px, 20px, 20px, 20px;
-    /* border: 1px solid black; */
+    margin: 20px;
+    width: 120vh;
+    height: 12vh;
+    padding: 20px 10px 10px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
     background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    color: black;
+
 }

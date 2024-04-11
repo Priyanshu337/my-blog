@@ -22,12 +22,11 @@ export default function AddArticle(props) {
 
     return (
         <>
-            <div className='main'>
+            <div className='top-container'>
                 <div className='heading'>
                     <h1>Add Article</h1>
                 </div>
                 <div className="Form-container">
-
                     <label className="label">Name:</label>
                     <input type="text" value={articleName} name="name" onChange={(e) => setArticlename(e.target.value)} />
                     <label className="label">Title:</label>

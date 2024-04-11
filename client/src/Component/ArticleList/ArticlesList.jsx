@@ -1,29 +1,24 @@
 import { Link } from 'react-router-dom';
 import "./ArticleList.css";
 
-
 const ArticleList = ({ list }) => {
+    console.log("hit", list);
 
     return (
         <>
-            < div className='article-list' >
+            < div classname="article-list">
                 {
                     list?.map(article => (
                         <div className='content'>
-                            {
-                                console.log(article)
-                            }
                             <Link key={article._id} className='article-list-item' to={`/articles/${article._id}`}>
-                                <h3>{article.title}</h3>
-                                <p>{article.content[0].substring(0, 100)}...</p>
+                                <label classname='label-title'>{article.title}</label>
+                                <p className='p-content'>{article.content[0].substring(0, 100)}...</p>
                             </Link>
                         </div>
                     ))
                 }
             </div >
         </>
-
     )
 }
-
 export default ArticleList

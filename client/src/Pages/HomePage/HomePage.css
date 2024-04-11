@@ -26,3 +26,7 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.articledisp-container {
+    border: 2px solid black;
+}

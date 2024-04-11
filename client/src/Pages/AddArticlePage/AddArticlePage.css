@@ -1,15 +1,20 @@
 /* AddArticlePage.css */
 
-.main {
+.top-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     height: 100vh;
     width: auto;
+    border: 2px solid black;
+
 }
 
 .heading {
-    margin: 0px 0px 20px 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .Form-container {
