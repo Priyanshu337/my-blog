@@ -20,6 +20,13 @@
     background-color: #fff;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     color: black;
+}
+
+.label-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
 }

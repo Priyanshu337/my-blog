@@ -10,7 +10,6 @@ const addComment = async (req, res) => {
         const response = await ArticleModel.findByIdAndUpdate(articleId, {
             $push: { comments: commentData },
         });
-
         const article = await ArticleModel.findById(articleId);
         if (article) {
             res.json(article);

@@ -16,7 +16,9 @@ const Navbar = () => {
                     <Link to="/contact" className="link">Contact</Link>
                 </div>
                 <div className="addArticle-container">
-                    <Link to="/index" className="addArticle" >Add Article</Link>
+                    <button className="addArticle-btn">
+                        <Link to="/index" className="addArticle" >Add Article</Link>
+                    </button>
                 </div>
             </nav >
         </>

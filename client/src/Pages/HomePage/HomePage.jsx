@@ -20,18 +20,13 @@ const HomePage = () => {
     console.log(articleList);
     return (
         <>
-            <div className="main-container" style={{
-                // backgroundImage: `url(${Home_bg_img})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                height: '100vh',
-            }}>
-                <h1 style={{ border: '2px solid black' }}>Home</h1>
+            <div className="main-container">
                 <SearchBar />
+                <div className="articledisp-container">
+                    <ArticleList list={articleList} />
+                </div>
             </div>
-            <div className="articledisp-container">
-                <ArticleList list={articleList} />
-            </div>
+
         </>
     )
 }

@@ -1,0 +1,13 @@
+.search-bar {
+    height: 8vh;
+    width: 120vh;
+}
+
+
+.searchbar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}

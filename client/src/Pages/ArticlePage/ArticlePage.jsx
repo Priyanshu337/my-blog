@@ -38,7 +38,7 @@ function ArticlePages() {
         loadArticleInfo();
     }, [loadArticleInfo]);
 
-    const handleDataFromChild = async (sendData) => {
+    const handleDataFromComponent = async (sendData) => {
         try {
             const response = await axios.post(`http://localhost:8080/api/articles/${articleId}/comments`, {
                 articleId: articleId,
@@ -70,7 +70,7 @@ function ArticlePages() {
                     <div className='add-comment'>
                         <h1>
                             {user ?
-                                <AddComment sendData={handleDataFromChild} /> :
+                                <AddComment sendData={handleDataFromComponent} /> :
                                 <button >Login to comment</button>
                             }
                         </h1>

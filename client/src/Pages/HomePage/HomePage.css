@@ -19,6 +19,9 @@
 .main-container {
     color: black;
     margin-top: -18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .search-bar {
@@ -29,4 +32,5 @@
 
 .articledisp-container {
     border: 2px solid black;
+    width: auto
 }

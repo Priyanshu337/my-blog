@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 
+import "./Login.css"
+
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -14,22 +16,21 @@ function Login() {
 
     const login = async () => {
         try {
-            await signInWithEmailAndPassword(getAuth(), email, password);
+            const response = await signInWithEmailAndPassword(getAuth(), email, password);
+            const data = JSON.stringify(response);
+            console.log(data);
             navigate('/articles')
         } catch (e) {
             setError(e.message);
         }
-
     }
-
-
     return (
         <>
             <div>
                 <h1>Login page</h1>
                 {error && <p className='error'>{error}</p>}
-                <input type='text' placeholder='Enter your email address' value={email} onChange={e => setEmail(e.target.value)} />
-                <input type='password' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} />
+                <input type='text' className='email-container' placeholder='Enter your email address' value={email} onChange={e => setEmail(e.target.value)} /><br />
+                <input type='password' className='password-container' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} /><br />
                 <button onClick={login}>Login</button>
 
             </div>
