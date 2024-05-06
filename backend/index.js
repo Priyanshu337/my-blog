@@ -20,8 +20,6 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig);
 
-
-
 const app = express();
 
 app.use(cors());

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
-function Login() {
+function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -18,6 +18,7 @@ function Login() {
                 return;
             }
             await createUserWithEmailAndPassword(getAuth(), email, password);
+            console.log("User crearted successfully");
             navigate('/articles')
         } catch (e) {
             setError(e.message);
@@ -40,4 +41,4 @@ function Login() {
     )
 }
 
-export default Login
+export default SignUp

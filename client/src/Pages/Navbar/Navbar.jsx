@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import myBlog from "../../Assets/My Blog.png";
 import "./Navbar.css"
 
 const Navbar = () => {
+
     return (
         <>
             <nav className="nav-container" >

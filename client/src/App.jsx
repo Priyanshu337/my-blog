@@ -22,13 +22,10 @@ function App() {
           <Route path="/articles" element={<ArticleListPage />} />
           <Route path="/articles/:articleId" element={<ArticlePage />} />
           <Route path="/contact" element={<ContactPage />} />
-
           <Route path="/index" element={<Index />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-
-
         </Routes>
       </div>
     </BrowserRouter>

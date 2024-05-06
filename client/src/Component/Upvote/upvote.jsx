@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios';
 
-function Upvote(props) {
-    const { articleId } = props;
+
+function Upvote({ articleId, woFunc }) {
 
     const upvoteBtn = async () => {
         try {
@@ -11,10 +11,12 @@ function Upvote(props) {
                     'Content-Type': 'application/json', authToken: localStorage.getItem('accessToken')
                 }
             });
-            console.log(response);
+            console.log(response)
+
         } catch (error) {
             console.error("error upvoting article", error)
         }
+        woFunc();
     };
     return (
         <>

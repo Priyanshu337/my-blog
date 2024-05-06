@@ -20,6 +20,7 @@ function ArticlePages() {
     const { articleId } = useParams();
     const { user, isLoading } = useUser();
 
+    // this is to get article from DB
     const loadArticleInfo = useCallback(async () => {
         try {
             const token = user && await user.getIdToken();
@@ -38,6 +39,7 @@ function ArticlePages() {
         loadArticleInfo();
     }, [loadArticleInfo]);
 
+    // this is for posting comment
     const handleDataFromComponent = async (sendData) => {
         try {
             const response = await axios.post(`http://localhost:8080/api/articles/${articleId}/comments`, {
@@ -50,12 +52,19 @@ function ArticlePages() {
             console.log("error", err);
         }
     }
+
+    const handleWoFunc = () => {
+        setArticleInfo(prevState => ({
+            ...prevState,
+            upvotes: prevState.upvotes + 1,
+        }));
+    }
     return (
         <>
             <div className='first-container'>
                 <div className='article'>
                     {user ? (
-                        <Upvote articleId={articleId} />
+                        <Upvote articleId={articleId} woFunc={handleWoFunc} />
                     ) : (
                         <button>Login to Upvote</button>
                     )}

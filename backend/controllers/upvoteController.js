@@ -4,10 +4,8 @@ const upvoteArticle = async (req, res) => {
     try {
         const { articleId } = req.params;
         const { uid } = req.user;
-        console.log("uis", uid);
 
         const article = await ArticleModel.findById(articleId);
-        // console.log(article);
         if (article) {
             const upvoteIds = article.upVoteIds || [];
             const canUpvote = uid && !upvoteIds.includes(uid);
@@ -17,7 +15,7 @@ const upvoteArticle = async (req, res) => {
                     $inc: { upvotes: 1 },
                     $push: { upVoteIds: uid },
                 });
-                res.json(" Upvote Added")
+                res.json("SUCCESS")
             }
 
         } else {

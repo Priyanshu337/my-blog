@@ -11,7 +11,7 @@ const useUser = () => {
             setUser(user);
             setIsLoading(false);
             localStorage.setItem('accessToken', user.accessToken);
-            console.log('accessToken', user.accessToken);
+            // here you can display accesstoken to see 
             setAccessToken(user.access_token);
         });
         return unsubscribe;
